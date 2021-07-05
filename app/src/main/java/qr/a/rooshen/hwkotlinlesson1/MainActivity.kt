@@ -11,27 +11,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val inputParameter = 1..10
-        for (input in inputParameter) {
-            val areaRadiusCircle = (PI * input).toInt()
-            val areaSquare = (input * input)
-            if (areaRadiusCircle > areaSquare) {
-                Log.d(
-                    "hwkotlinlesson1",
-                    "Площадь радиуса круга $areaRadiusCircle >  Площади квадрата $areaSquare"
-                )
-            } else if (areaSquare > areaRadiusCircle) {
-                Log.d(
-                    "hwkotlinlesson1",
-                    "Площади квадрата $areaSquare >  Площадь радиуса круга $areaRadiusCircle"
-                )
-            } else if (areaSquare == areaRadiusCircle) {
-                //Это условие не отработает никогда :)
-                Log.d(
-                    "hwkotlinlesson1",
-                    "Площадь радиуса круга $areaRadiusCircle =  Площади квадрата $areaSquare"
-                )
-            }
+        val inputParameter = generateRandomNumber(10)
+        val areaCircle = (PI * inputParameter * inputParameter)
+        val areaSquare = (inputParameter * inputParameter).toDouble()
+        Log.d("hwkotlinlesson1", "Рандомное число $inputParameter")
+        when (inputParameter > 0) {
+            areaCircle > areaSquare -> Log.d(
+                "hwkotlinlesson1",
+                "Площадь радиуса круга $areaCircle >  Площади квадрата $areaSquare"
+            )
+            areaSquare > areaCircle -> Log.d(
+                "hwkotlinlesson1",
+                "Площади квадрата $areaSquare >  Площадь радиуса круга $areaCircle"
+            )
+            areaSquare == areaCircle -> Log.d(
+                "hwkotlinlesson1",
+                "Площадь радиуса круга $areaCircle =  Площади квадрата $areaSquare"
+            )
         }
+
+    }
+
+    private fun generateRandomNumber(Range: Int): Int {
+        return Range + (Math.random() * Range).toInt()
     }
 }
